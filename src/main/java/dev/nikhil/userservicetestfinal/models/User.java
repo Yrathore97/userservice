@@ -1,6 +1,5 @@
 package dev.nikhil.userservicetestfinal.models;
 
-import dev.nikhil.userservicetestfinal.dtos.UserDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import lombok.Getter;
@@ -17,11 +16,4 @@ public class User extends BaseModel {
     private String password;
     @ManyToMany
     private Set<Role> roles = new HashSet<>();
-
-    public static UserDto from(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setEmail(user.getEmail());
-        userDto.setRoles(user.getRoles());
-        return userDto;
-    }
 }
