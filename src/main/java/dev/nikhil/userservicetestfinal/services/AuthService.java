@@ -12,7 +12,6 @@ import io.jsonwebtoken.security.MacAlgorithm;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMapAdapter;
 
@@ -26,12 +25,12 @@ import java.util.Optional;
 public class AuthService {
     private UserRepository userRepository;
     private SessionRepository sessionRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    //private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public AuthService(UserRepository userRepository, SessionRepository sessionRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public AuthService(UserRepository userRepository, SessionRepository sessionRepository) {
         this.userRepository = userRepository;
         this.sessionRepository = sessionRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        //this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     public ResponseEntity<UserDto> login(String email, String password) {
@@ -45,9 +44,9 @@ public class AuthService {
         User user = userOptional.get();
 
         //Validation
-        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
-            return null;
-        }
+//        if (!bCryptPasswordEncoder.matches(password, user.getPassword())) {
+//            return null;
+//        }
 
         //String token = RandomStringUtils.randomAlphanumeric(30);
 
@@ -115,7 +114,7 @@ public class AuthService {
     public UserDto signUp(String email, String password) {
         User user = new User();
         user.setEmail(email);
-        user.setPassword(bCryptPasswordEncoder.encode(password));
+        //user.setPassword(bCryptPasswordEncoder.encode(password));
 
         User savedUser = userRepository.save(user);
 
@@ -133,6 +132,11 @@ public class AuthService {
 
         Claims claims =
                 Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
+
+//        if(exiprytime > currentdate) {
+//
+//        }
+        // check login device
 
         return SessionStatus.ACTIVE;
     }
