@@ -8,13 +8,13 @@
         <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>dev.naman</groupId>
+    <groupId>dev.nikhil</groupId>
     <artifactId>userservicetestfinal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>userservicetestfinal</name>
     <description>userservicetestfinal</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -83,6 +83,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
     </dependencies>
